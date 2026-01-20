@@ -16,6 +16,7 @@ qt_add_qml_module(appNimo
     URI Nimo
     QML_FILES
         Main.qml
+        RESOURCES project_layout.md
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
