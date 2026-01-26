@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
-
 project(Nimo VERSION 0.1 LANGUAGES CXX)
-
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick Sql)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
@@ -23,13 +21,19 @@ qt_add_qml_module(appNimo
         SOURCES repositories/goalrepository.h repositories/goalrepository.cpp
         SOURCES services/goalservice.h services/goalservice.cpp
         QML_FILES config/logging.json
+        SOURCES logging/requestscope.h
+        SOURCES logging/loggermacros.h
+        SOURCES repositories/occurrencerepository.h repositories/occurrencerepository.cpp
+        SOURCES repositories/scorerepository.h repositories/scorerepository.cpp
+        SOURCES repositories/streakrepository.h repositories/streakrepository.cpp
+        SOURCES services/occurrenceservice.h services/occurrenceservice.cpp
+        SOURCES services/scoreservice.h services/scoreservice.cpp
+        SOURCES services/streakservice.h services/streakservice.cpp
+        SOURCES services/calendarservice.h services/calendarservice.cpp
+        SOURCES services/dashboardservice.h services/dashboardservice.cpp
 )
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
 set_target_properties(appNimo PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appNimo
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
@@ -37,7 +41,7 @@ set_target_properties(appNimo PROPERTIES
 )
 
 target_link_libraries(appNimo
-    PRIVATE Qt6::Quick
+    PRIVATE Qt6::Quick Qt6::Sql
 )
 
 include(GNUInstallDirs)
