@@ -17,6 +17,12 @@ qt_add_qml_module(appNimo
     QML_FILES
         Main.qml
         RESOURCES project_layout.md
+        SOURCES logging/logger.h logging/logger.cpp
+        SOURCES logging/requestcontext.h logging/requestcontext.cpp
+        SOURCES database/databasemanager.h database/databasemanager.cpp
+        SOURCES repositories/goalrepository.h repositories/goalrepository.cpp
+        SOURCES services/goalservice.h services/goalservice.cpp
+        QML_FILES config/logging.json
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
